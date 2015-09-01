@@ -211,4 +211,7 @@ span {
   .biopic {
     display: block;
   }
+button {
+  display: none;
+}
 }
