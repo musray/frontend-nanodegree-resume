@@ -2,20 +2,27 @@
 This is empty on purpose! Your code to build the resume will go here.
  */
 var formattedName = HTMLheaderName.replace("%data%","褚瑞");
-var formattedRole = HTMLheaderRole.replace("%data%","Frondend Developer 我的第一份在线简历");
+var formattedRole = HTMLheaderRole.replace("%data%","Frondend Developer");
 $("#header").append(formattedName, formattedRole);
 
 var myContactInfo = {
       "mobile": "+86 135-0139-9815",
-      "email" : "yizhe.chu@gmail.com" 
+      "email" : "yizhe.chu@gmail.com",
+      "github":"musray"
 }
 
-formattedMobile = HTMLmobile.replace("%data%", myContactInfo.mobile);
-$("#topContacts").append(formattedMobile);
-formattedEmail = HTMLemail.replace("%data%", myContactInfo.email);
-$("#topContacts").append(formattedEmail);
+var myMobile = HTMLmobile.replace("%data%", myContactInfo.mobile);
+$("#topContacts").append(myMobile);
+$("#footerContacts").append(myMobile);
+var myEmail = HTMLemail.replace("%data%", myContactInfo.email);
+$("#topContacts").append(myEmail);
+$("#footerContacts").append(myEmail);
+var myGithub = HTMLgithub.replace("%data%", myContactInfo.github);
+$("#topContacts").append(myGithub);
+$("#footerContacts").append(myGithub);
 
-var skills = ['HTML', 'CSS', 'JavaScript', 'jQuery', 'Github', 'VIM']
+
+var skills = ['HTML', 'CSS', 'JavaScript', 'jQuery', 'Python', 'Git', 'vim']
 var bio = {
       "name" : "Chu Rui",
       "role" : "Front End Developer",
@@ -69,20 +76,32 @@ var education = {
 
 if (bio.skills.length > 0) {
   $("#header").append(HTMLskillsStart);
-  var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-  $("#skills").append(formattedSkill);
-  formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-  $("#skills").append(formattedSkill);
-  formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-  $("#skills").append(formattedSkill);
-  formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-  $("#skills").append(formattedSkill);
-  formattedSkill = HTMLskills.replace("%data%", bio.skills[4]);
-  $("#skills").append(formattedSkill);
-  formattedSkill = HTMLskills.replace("%data%", bio.skills[5]);
-  $("#skills").append(formattedSkill);
+  (function() {
+    for (item in bio.skills){
+      var formattedSkill = HTMLskills.replace("%data%", bio.skills[item]);
+      $("#skills").append(formattedSkill);
+    }
+  }())  
+};
 
-}
+//if (bio.skills.length > 0) {
+//  $("#header").append(HTMLskillsStart);
+//  var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
+//  $("#skills").append(formattedSkill);
+//  formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
+//  $("#skills").append(formattedSkill);
+//  formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
+//  $("#skills").append(formattedSkill);
+//  formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
+//  $("#skills").append(formattedSkill);
+//  formattedSkill = HTMLskills.replace("%data%", bio.skills[4]);
+//  $("#skills").append(formattedSkill);
+//  formattedSkill = HTMLskills.replace("%data%", bio.skills[5]);
+//  $("#skills").append(formattedSkill);
+//  formattedSkill = HTMLskills.replace("%data%", bio.skills[6]);
+//  $("#skills").append(formattedSkill);
+//
+//}
 
 function displayWork() {
   for (work in works.workExp) {
@@ -100,21 +119,6 @@ function displayWork() {
   }
 }
 displayWork();
-
-//$(document).click(function(loc){
-  //var xLocation = loc.pageX;
-  //var yLocation = loc.pageY;
-  //console.log(loc);
-  //logClicks(xLocation, yLocation);
-//})
-
-$("#main").append(internationalizeButton);
-function inName(){
-  var names = bio.name.trim().split(" ");
-  var firstName = names[0][0].toUpperCase() + names[0].slice(1).toLowerCase();
-  var lastName = names[1].toUpperCase();
-  return firstName + " " + lastName 
-}
 
 var projects = {
   "info" : [
